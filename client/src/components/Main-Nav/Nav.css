@@ -1,0 +1,28 @@
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  align-items: center;
+  border-bottom: 1px solid #59656f;
+}
+
+.nav-brand {
+  flex: 1;
+}
+
+.nav-links {
+  flex: 2;
+  max-width: 30rem;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-link:hover {
+  color: var(--highlight);
+}

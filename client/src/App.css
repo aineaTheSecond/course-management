@@ -1,0 +1,54 @@
+:root {
+  --black: #2e2c2f;
+  --primaryColor: #1f1235;
+  --secondaryColor: #1b1425;
+  --highlight: #ff6e6c;
+  --pink: #90708c;
+  --white: #f4effc;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  color: var(--primaryColor);
+}
+
+body {
+  background: var(--white);
+}
+
+.container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  color: var(--primaryColor);
+}
+
+.cta {
+  border: none;
+  padding: 0.5rem 2rem;
+  background: var(--highlight);
+  border-radius: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cta:hover {
+  color: var(--primaryColor);
+}
+
+.section-header {
+  font-size: 2rem;
+  padding: 2rem 0;
+}

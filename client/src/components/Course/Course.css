@@ -1,0 +1,26 @@
+.course {
+  width: 20rem;
+  height: 15rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
+  background: #e2daeb;
+  text-align: center;
+}
+
+.course-content {
+  display: grid;
+  line-height: 2;
+}
+
+.course-img {
+  width: 4rem;
+  height: 4rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+}
+
+.icon {
+  color: var(--highlight);
+}

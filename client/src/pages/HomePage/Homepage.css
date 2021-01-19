@@ -1,0 +1,29 @@
+.hero {
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-heading {
+  font-size: 2.5rem;
+  letter-spacing: 0.4rem;
+}
+
+.hero-detail {
+  font-weight: lighter;
+  font-size: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.hero-cta {
+  background: var(--highlight);
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 2rem;
+  margin-top: 2rem;
+  color: #fff;
+}
+
+.hero-cta > * {
+  font-size: 2em;
+}
