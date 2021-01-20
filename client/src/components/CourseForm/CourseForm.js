@@ -1,8 +1,9 @@
 import * as React from "react";
 import axios from "axios";
 import { FormInput } from "..";
+import "./CourseForm.css";
 
-const url = "http://localhost:5000/new";
+const url = "http://localhost:5000/courses/new";
 
 function CourseForm() {
   const [courseName, setCourseName] = React.useState("");
@@ -25,33 +26,36 @@ function CourseForm() {
   };
 
   return (
-    <form className="container course-form" onSubmit={handleSubmit}>
-      <FormInput
-        name="course_id"
-        label="Course Id"
-        value={courseId}
-        onChange={(e) => setCourseId(e.target.value)}
-        placeholder="e.g 1,2,3"
-        type="number"
-      />
-      <FormInput
-        name="course_name"
-        label="Course Name"
-        value={courseName}
-        onChange={(e) => setCourseName(e.target.value)}
-        placeholder="e.g Computer Science "
-        type="text"
-      />
-      <FormInput
-        name="modules"
-        label="Modules"
-        value={course_modules}
-        onChange={(e) => setCourseModules(e.target.value)}
-        placeholder="e.g 10"
-        type="number"
-      />
-      <button>Save</button>
-    </form>
+    <div className="container course-form">
+      <h1 className="section-header">Use this form to create a new course</h1>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="course_id"
+          label="Course Id"
+          value={courseId}
+          onChange={(e) => setCourseId(e.target.value)}
+          placeholder="e.g 1,2,3"
+          type="number"
+        />
+        <FormInput
+          name="course_name"
+          label="Course Name"
+          value={courseName}
+          onChange={(e) => setCourseName(e.target.value)}
+          placeholder="e.g Computer Science "
+          type="text"
+        />
+        <FormInput
+          name="modules"
+          label="Modules"
+          value={course_modules}
+          onChange={(e) => setCourseModules(e.target.value)}
+          placeholder="e.g 10"
+          type="number"
+        />
+        <button>Save</button>
+      </form>
+    </div>
   );
 }
 

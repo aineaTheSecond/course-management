@@ -1,9 +1,9 @@
 import * as React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { Course } from "..";
+import { Course, AddButton } from "..";
 
-const url = "http://localhost:5000/courses";
+const url = "http://localhost:5000/courses/list";
 
 const CourseList = ({ history }) => {
   const [courses, setCourses] = React.useState([]);
@@ -33,26 +33,8 @@ const CourseList = ({ history }) => {
         {courses.map((course) => (
           <Course key={course.course_id} {...course} />
         ))}
-
-        {console.log(courses)}
       </div>
-      <button
-        className="cta"
-        onClick={() => history.push("/courses/new")}
-        style={{
-          width: "6rem",
-          height: "6rem",
-          padding: "1rem",
-          marginTop: "2rem",
-          marginBottom: "2rem",
-          position: "absolute",
-          right: "10rem",
-          zIndex: "3",
-          borderRadius: "50%",
-        }}
-      >
-        <span style={{ fontSize: "2rem" }}>+ </span>
-      </button>
+      <AddButton onClick={() => history.push("courses/new")} />
     </div>
   );
 };

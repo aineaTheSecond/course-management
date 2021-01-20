@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { AboutPage, CoursesPage, HomePage } from "./pages";
 import "./App.css";
-import { CourseForm, Header, ModuleList } from "./components";
+import { CourseForm, Header, ModuleList, ModuleForm } from "./components";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Route exact path="/courses" component={CoursesPage} />
         <Route path="/courses/new" component={CourseForm} />
         <Route path="/course/:id" component={ModuleList} />
+        <Route path="/modules/new" component={ModuleForm} />
         <Route path="/about" component={AboutPage} />
       </Switch>
     </Router>

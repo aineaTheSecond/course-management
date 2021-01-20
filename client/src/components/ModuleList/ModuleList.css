@@ -1,3 +1,9 @@
+.module-list {
+  position: relative;
+  display: grid;
+  justify-content: center;
+}
+
 .module-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -8,7 +14,7 @@
 }
 
 .module-table thead tr {
-  background-color: #009879;
+  background-color: var(--primaryColor);
   color: #ffffff;
   text-align: left;
 }
@@ -27,5 +33,14 @@
 }
 
 .module-table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid var(--primaryColor);
+}
+
+.module-icon {
+  cursor: pointer;
+  color: var(--primaryColor);
+}
+
+.module-icon:hover {
+  color: var(--highlight);
 }

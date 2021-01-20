@@ -1,25 +1,54 @@
 import * as React from "react";
+import axios from "axios";
+
+import { AddButton } from "..";
 import "./ModuleList.css";
 
-const ModuleList = () => {
-  // fetch modules
+let url = "http://localhost:5000/modules/list";
 
-  const modules = [
-    {
-      module_name: "Introduction",
-      module_id: 1,
-      course_name: "Computer Science",
-    },
-    {
-      module_name: "Networking",
-      module_id: 2,
-      course_name: "Computer Science",
-    },
-  ];
+const ModuleList = ({ history, match }) => {
+  const courseUrl = `http://localhost:5000/courses/${match.params.id}`;
+
+  // component state
+  const [modules, setModules] = React.useState([]);
+  const [course, setCourse] = React.useState([]);
+
+  // fetch modules from the database
+  React.useEffect(() => {
+    // retrieve modules from the database
+    async function fetchModules() {
+      try {
+        let resp = await axios.get(url);
+        // update the state with the retrieved modules
+        setModules(resp.data.response);
+      } catch (error) {
+        alert(error);
+      }
+    }
+
+    // retrieve the course provided the id
+    async function getCourseById() {
+      try {
+        let course = await axios.get(courseUrl);
+        setCourse(course.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getCourseById();
+    fetchModules();
+  }, []);
+
+  async function handleUpdates() {
+    let result = await axios.put();
+  }
 
   return (
     <div className="module-list container">
-      <h1>list of modules in course: </h1>
+      <h1 className="section-header">
+        List of modules in {course.course_name}{" "}
+      </h1>
       <table className="module-table">
         <thead>
           <tr>
@@ -34,7 +63,7 @@ const ModuleList = () => {
           {modules.map((module) => (
             <tr key={module.module_id}>
               <td>{module.module_name}</td>
-              <td>{module.course_name}</td>
+              <td>{course.course_name}</td>
               <td>
                 <span class="material-icons module-icon">create</span>
               </td>
@@ -45,6 +74,9 @@ const ModuleList = () => {
           ))}
         </tbody>
       </table>
+      <div className="add-btn">
+        <AddButton onClick={() => history.push("/modules/new")} />
+      </div>
     </div>
   );
 };
