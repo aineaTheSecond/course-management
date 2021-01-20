@@ -6,7 +6,9 @@ const Nav = () => {
   return (
     <div className="main-nav container">
       <div className="nav-brand">
-        <Link className="nav-link">Course Management</Link>
+        <Link to="/" className="nav-link">
+          Course Management
+        </Link>
       </div>
       <ul className="nav-links">
         <Link className="nav-link" to="/">

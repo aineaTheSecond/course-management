@@ -17,6 +17,7 @@ router.get("/courses", async (req, res) => {
 
 // endpoint for creating a new course
 router.post("/new", async (req, res) => {
+  console.log(req.body);
   // desctructure the course details from the request body
   const { course_id, course_name, modules } = req.body;
   try {
@@ -26,6 +27,7 @@ router.post("/new", async (req, res) => {
       course_name,
       modules,
     });
+
     res.json({ result });
   } catch (error) {
     // in case there's an error, send it back as a response

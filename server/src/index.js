@@ -7,16 +7,18 @@ require("dotenv").config();
 // constants
 const app = express();
 const port = process.env.API_PORT;
+const appOrigin = process.env.APP_ORIGIN;
 
 // middlewares
 
 // parse json data from requests
 app.use(bodyParser.json());
 // parse data from urls
-// app.use(bodyParser.urlencoded({ extended: false }));
-app.use(router);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors({ origin: appOrigin }));
 
-app.use(cors);
+// mount routes
+app.use(router);
 
 // listen
 app.listen(port, () => {
