@@ -18,7 +18,14 @@ const Course = ({ name, modules }) => {
           <h3 className="course-modules">{modules} modules</h3>
         </div>
       </div>
-      <button>Explore</button>
+      <button
+        className="cta"
+        style={{
+          marginTop: "2rem",
+        }}
+      >
+        Explore
+      </button>
     </div>
   );
 };

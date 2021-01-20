@@ -9,9 +9,14 @@ const app = express();
 const port = process.env.API_PORT;
 
 // middlewares
+
+// parse json data from requests
+app.use(bodyParser.json());
+// parse data from urls
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
+
 app.use(cors);
-app.use(bodyParser);
 
 // listen
 app.listen(port, () => {

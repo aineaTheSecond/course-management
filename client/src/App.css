@@ -14,11 +14,11 @@
 }
 
 html {
-  font-family: "Montserrat", sans-serif;
   color: var(--primaryColor);
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   background: var(--white);
 }
 
