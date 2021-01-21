@@ -29,7 +29,6 @@ router.get("/courses/:id", async (req, res) => {
 
 // endpoint for creating a new course
 router.post("/courses/new", async (req, res) => {
-  console.log(req.body);
   // desctructure the course details from the request body
   const { course_id, course_name, modules } = req.body;
   try {
@@ -129,7 +128,7 @@ router.put("/modules/:id", async (req, res) => {
 // delete a module
 router.delete("/modules/:id", (req, res) => {
   const { id } = req.params;
-
+  console.log(id, req.body);
   return db("modules")
     .where("module_id", id)
     .del()

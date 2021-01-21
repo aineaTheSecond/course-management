@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { AddButton } from "..";
 import "./ModuleList.css";
 import { Redirect } from "react-router-dom";
+import { toast } from "material-react-toastify";
 
 let url = "http://localhost:5000/modules/list";
 
 const ModuleList = ({ history, match }) => {
   // urls for making async requests
   const courseUrl = `http://localhost:5000/courses/${match.params.id}`;
-  const moduleUrl = `http://localhost:5000/modules/${match.params.id}`;
 
   // component state
   const [modules, setModules] = React.useState([]);
@@ -44,15 +44,6 @@ const ModuleList = ({ history, match }) => {
     getCourseById();
     fetchModules();
   }, []);
-
-  async function handleDelete() {
-    try {
-      let delResponse = await axios(moduleUrl, { method: "DELETE" });
-      console.log(delResponse);
-    } catch (error) {
-      alert(error);
-    }
-  }
 
   return (
     <div className="module-list container">
@@ -87,7 +78,21 @@ const ModuleList = ({ history, match }) => {
               </td>
               <td>
                 <span
-                  onClick={handleDelete}
+                  onClick={async () => {
+                    try {
+                      let delResponse = await axios(
+                        `http://localhost:5000/modules/${module.module_id}`,
+                        { method: "DELETE" }
+                      );
+                      if (delResponse.status === 200) {
+                        toast.success("Deleted successfully");
+                      } else {
+                        toast.error("failed to delete ");
+                      }
+                    } catch (error) {
+                      alert(error);
+                    }
+                  }}
                   className="material-icons module-icon"
                 >
                   delete

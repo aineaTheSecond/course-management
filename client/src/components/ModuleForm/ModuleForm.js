@@ -1,13 +1,20 @@
 import * as React from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { FormInput } from "..";
+import { toast } from "material-react-toastify";
 
 let url = "http://localhost:5000/modules/new";
 
 const ModuleForm = () => {
+  // component state
   const [moduleId, setModuleId] = React.useState("");
   const [moduleName, setModuleName] = React.useState("");
 
+  // react router dom history
+  const history = useHistory();
+
+  // function to send a module to the server for saving
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -16,7 +23,12 @@ const ModuleForm = () => {
         module_name: moduleName,
       });
 
-      return resp;
+      if (resp.status === 200) {
+        toast.success("Saved successfully");
+        history.goBack();
+      } else {
+        toast.error("could not save module, please try again");
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -25,7 +37,7 @@ const ModuleForm = () => {
   return (
     <div className="container module-form">
       <h1 className="section-header">Use this form to create a new module</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="input-form">
         <FormInput
           name="module_id"
           label="Module Id"

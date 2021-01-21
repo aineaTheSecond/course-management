@@ -1,7 +1,9 @@
+// import libraries
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "material-react-toastify";
 
+// components
 import { AboutPage, CoursesPage, HomePage } from "./pages";
-import "./App.css";
 import {
   CourseForm,
   Header,
@@ -9,6 +11,10 @@ import {
   ModuleForm,
   EditForm,
 } from "./components";
+
+// import css files
+import "./App.css";
+import "material-react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -23,6 +29,7 @@ function App() {
         <Route exact path="/modules/:id" component={EditForm} />
         <Route path="/about" component={AboutPage} />
       </Switch>
+      <ToastContainer />
     </Router>
   );
 }

@@ -1,14 +1,19 @@
 import * as React from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 import { FormInput } from "..";
 import "./CourseForm.css";
-
-const url = "http://localhost:5000/courses/new";
+import { toast } from "material-react-toastify";
 
 function CourseForm() {
   const [courseName, setCourseName] = React.useState("");
   const [courseId, setCourseId] = React.useState("");
   const [course_modules, setCourseModules] = React.useState("");
+
+  const url = "http://localhost:5000/courses/new";
+
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +24,12 @@ function CourseForm() {
         course_name: courseName,
         modules: course_modules,
       });
-      return response;
+      if (response.status === 200) {
+        toast.success("course added successfully");
+      } else {
+        toast.error("could not add course");
+        history.goBack();
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -28,7 +38,7 @@ function CourseForm() {
   return (
     <div className="container course-form">
       <h1 className="section-header">Use this form to create a new course</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="input-form">
         <FormInput
           name="course_id"
           label="Course Id"
