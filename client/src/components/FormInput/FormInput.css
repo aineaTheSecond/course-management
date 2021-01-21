@@ -1,0 +1,43 @@
+.group {
+  position: relative;
+}
+
+.group .form-input {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 1.8rem;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.group .form-input:focus {
+  outline: none;
+}
+
+.group input:focus ~ label,
+.group input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: var(--highlight);
+  font-size: 12px;
+}
+
+.group label {
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+
+.input-label:focus {
+  top: -14px;
+  font-size: 12px;
+}

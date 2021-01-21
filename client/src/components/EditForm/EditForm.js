@@ -36,25 +36,28 @@ const EditForm = ({ match }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormInput
-        name="module_id"
-        label="Module Id"
-        value={currentModule.module_id}
-        onChange={(e) => setCurrentModule({ module_id: e.target.value })}
-        placeholder="e.g 1,2,3"
-        type="number"
-      />
-      <FormInput
-        name="module_name"
-        label="Module Name"
-        value={currentModule.module_name}
-        onChange={(e) => setCurrentModule({ module_name: e.target.value })}
-        placeholder="e.g 1,2,3"
-        type="number"
-      />
-      <button type="submit">Save</button>
-    </form>
+    <div className="container">
+      <h1 className="section-header">Edit and save changes to the module</h1>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="module_id"
+          label="Module Id"
+          value={currentModule.module_id}
+          onChange={(e) => setCurrentModule({ module_id: e.target.value })}
+          placeholder="e.g 1,2,3"
+          type="number"
+        />
+        <FormInput
+          name="module_name"
+          label="Module Name"
+          value={currentModule.module_name}
+          onChange={(e) => setCurrentModule({ module_name: e.target.value })}
+          placeholder="e.g 1,2,3"
+          type="number"
+        />
+        <button type="submit">Save</button>
+      </form>
+    </div>
   );
 };
 

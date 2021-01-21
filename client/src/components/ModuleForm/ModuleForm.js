@@ -23,7 +23,8 @@ const ModuleForm = () => {
   };
 
   return (
-    <div className="module-form">
+    <div className="container module-form">
+      <h1 className="section-header">Use this form to create a new module</h1>
       <form onSubmit={handleSubmit}>
         <FormInput
           name="module_id"
