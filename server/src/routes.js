@@ -1,5 +1,6 @@
 // this file consists of endpoints that are consumed by the API
 const express = require("express");
+const { returning } = require("../db.config");
 const router = express.Router();
 
 // the database config
@@ -69,7 +70,7 @@ router.put("/course/:id", async (req, res) => {
 // delete a course
 router.delete("/courses/:id", (req, res) => {
   const { id } = req.params;
-  console.log(id, req.body);
+
   return db("courses")
     .where("course_id", id)
     .del()
@@ -80,15 +81,15 @@ router.delete("/courses/:id", (req, res) => {
 });
 
 // create a new module
-router.post("/modules/new", async (req, res) => {
+router.post("/course/:id/modules/new", async (req, res) => {
   try {
+    const { id } = req.params;
     const { module_id, module_name } = req.body;
-    // insert the data into the database
+
     let result = await db("modules").returning("*").insert({
       module_id,
       module_name,
     });
-
     res.json({ result });
   } catch (error) {
     // in case there's an error, send it back as a response
@@ -141,7 +142,7 @@ router.put("/modules/:id", async (req, res) => {
 // delete a module
 router.delete("/modules/:id", (req, res) => {
   const { id } = req.params;
-  console.log(id, req.body);
+
   return db("modules")
     .where("module_id", id)
     .del()

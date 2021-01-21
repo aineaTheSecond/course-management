@@ -1,13 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { toast } from "material-react-toastify";
 
 import "./Course.css";
 
-const Course = ({ course_id, course_name, modules }) => {
-  const history = useHistory();
-
+const Course = ({ course_id, course_name, modules, history }) => {
   return (
     <div className="course">
       <div className="course-content">
@@ -33,6 +31,7 @@ const Course = ({ course_id, course_name, modules }) => {
               );
               if (delResponse.status === 200) {
                 toast.success("Deleted successfully");
+                history.push("/courses");
               } else {
                 toast.error("failed to delete ");
               }
@@ -56,4 +55,4 @@ const Course = ({ course_id, course_name, modules }) => {
   );
 };
 
-export default Course;
+export default withRouter(Course);

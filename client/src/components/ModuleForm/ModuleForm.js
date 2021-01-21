@@ -4,9 +4,8 @@ import { useHistory } from "react-router-dom";
 import { FormInput } from "..";
 import { toast } from "material-react-toastify";
 
-let url = "http://localhost:5000/modules/new";
-
-const ModuleForm = () => {
+const ModuleForm = ({ match }) => {
+  let url = `http://localhost:5000/course/${match.params.id}/modules/new`;
   // component state
   const [moduleId, setModuleId] = React.useState("");
   const [moduleName, setModuleName] = React.useState("");
@@ -36,6 +35,7 @@ const ModuleForm = () => {
 
   return (
     <div className="container module-form">
+      {console.log(match)}
       <h1 className="section-header">Use this form to create a new module</h1>
       <form onSubmit={handleSubmit} className="input-form">
         <FormInput

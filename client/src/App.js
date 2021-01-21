@@ -10,6 +10,7 @@ import {
   ModuleList,
   ModuleForm,
   EditForm,
+  ManageModules,
 } from "./components";
 
 // import css files
@@ -24,9 +25,9 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/courses" component={CoursesPage} />
         <Route path="/courses/new" component={CourseForm} />
-        <Route path="/course/:id" component={ModuleList} />
-        <Route path="/modules/new" component={ModuleForm} />
-        <Route exact path="/modules/:id" component={EditForm} />
+        <Route exact path="/course/:id" component={ManageModules} />
+        <Route exact path="/course/:id/modules/new" component={ModuleForm} />
+        <Route exact path="/course/:id/modules/:id" component={EditForm} />
         <Route path="/about" component={AboutPage} />
       </Switch>
       <ToastContainer />

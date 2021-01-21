@@ -1,25 +1,9 @@
 import * as React from "react";
-import axios from "axios";
+
 import { withRouter } from "react-router-dom";
 import { Course, AddButton } from "..";
 
-const url = "http://localhost:5000/courses/list";
-
-const CourseList = ({ history }) => {
-  const [courses, setCourses] = React.useState([]);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await axios.get(url);
-        setCourses(result.data.response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, []);
-
+const CourseList = ({ courses, history }) => {
   return (
     <div className="course-list">
       {courses.length > 0 ? (

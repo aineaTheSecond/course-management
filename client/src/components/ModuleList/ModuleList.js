@@ -1,53 +1,20 @@
 import * as React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { AddButton } from "..";
 import "./ModuleList.css";
 import { Redirect } from "react-router-dom";
 import { toast } from "material-react-toastify";
 
-let url = "http://localhost:5000/modules/list";
-
-const ModuleList = ({ history, match }) => {
-  // urls for making async requests
-  const courseUrl = `http://localhost:5000/courses/${match.params.id}`;
-
-  // component state
-  const [modules, setModules] = React.useState([]);
-  const [course, setCourse] = React.useState([]);
+const ModuleList = ({ course, modules }) => {
   const [redirect, setRedirect] = React.useState(false);
-
-  // fetch modules from the database
-  React.useEffect(() => {
-    // retrieve modules from the database
-    async function fetchModules() {
-      try {
-        let resp = await axios.get(url);
-        // update the state with the retrieved modules
-        setModules(resp.data.response);
-      } catch (error) {
-        alert(error);
-      }
-    }
-
-    // retrieve the course provided the id
-    async function getCourseById() {
-      try {
-        let course = await axios.get(courseUrl);
-        setCourse(course.data[0]);
-      } catch (error) {
-        alert(error);
-      }
-    }
-
-    getCourseById();
-    fetchModules();
-  }, []);
+  const history = useHistory();
 
   return (
     <div className="module-list container">
       {redirect && <Redirect to="modules/edit" />}
+      {console.log(course)}
       <h1 className="section-header">
         List of modules in {course.course_name}
       </h1>
@@ -67,7 +34,9 @@ const ModuleList = ({ history, match }) => {
               <td>{module.module_name}</td>
               <td>{course.course_name}</td>
               <td>
-                <Link to={"/modules/" + module.module_id}>
+                <Link
+                  to={`/course/${course.course_id}/module/${module.module_id}`}
+                >
                   <span
                     onClick={() => setRedirect(true)}
                     className="material-icons module-icon"
@@ -103,7 +72,11 @@ const ModuleList = ({ history, match }) => {
         </tbody>
       </table>
       <div className="add-btn">
-        <AddButton onClick={() => history.push("/modules/new")} />
+        <AddButton
+          onClick={() => {
+            history.push(`/course/${course.course_id}/modules/new`);
+          }}
+        />
       </div>
     </div>
   );

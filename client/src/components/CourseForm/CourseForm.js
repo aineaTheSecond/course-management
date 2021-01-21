@@ -9,7 +9,7 @@ import { toast } from "material-react-toastify";
 function CourseForm() {
   const [courseName, setCourseName] = React.useState("");
   const [courseId, setCourseId] = React.useState("");
-  const [course_modules, setCourseModules] = React.useState("");
+  const [modules, setModules] = React.useState("");
 
   const url = "http://localhost:5000/courses/new";
 
@@ -22,7 +22,7 @@ function CourseForm() {
       const response = await axios.post(url, {
         course_id: courseId,
         course_name: courseName,
-        modules: course_modules,
+        modules: modules,
       });
       if (response.status === 200) {
         toast.success("course added successfully");
@@ -58,8 +58,8 @@ function CourseForm() {
         <FormInput
           name="modules"
           label="Modules"
-          value={course_modules}
-          onChange={(e) => setCourseModules(e.target.value)}
+          value={modules}
+          onChange={(e) => setModules(e.target.value)}
           placeholder="e.g 10"
           type="number"
         />
