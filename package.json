@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd client && npm start\" \"cd server && npm start\" --kill-others-on-fail"
+    "start": "concurrently \"cd client && npm start\" \"cd server && npm start\" --kill-others-on-fail"
   },
   "keywords": [],
   "author": "",
