@@ -66,6 +66,19 @@ router.put("/course/:id", async (req, res) => {
   }
 });
 
+// delete a course
+router.delete("/courses/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id, req.body);
+  return db("courses")
+    .where("course_id", id)
+    .del()
+    .then((response) => {
+      db.select("*").from("courses");
+      res.json({ response });
+    });
+});
+
 // create a new module
 router.post("/modules/new", async (req, res) => {
   try {

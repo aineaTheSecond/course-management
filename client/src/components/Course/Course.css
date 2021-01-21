@@ -1,6 +1,7 @@
 .course {
   width: 20rem;
   height: 15rem;
+  /* position: relative; */
   box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.4);
   background: #e2daeb;
   text-align: center;
@@ -23,4 +24,13 @@
 
 .icon {
   color: var(--highlight);
+}
+
+.course-footer {
+  margin-top: 2rem;
+  padding: 0 1rem;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

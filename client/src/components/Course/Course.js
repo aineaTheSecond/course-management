@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { toast } from "material-react-toastify";
 
 import "./Course.css";
 
@@ -21,15 +23,35 @@ const Course = ({ course_id, course_name, modules }) => {
           <h3 className="course-modules">{modules} modules</h3>
         </div>
       </div>
-      <button
-        onClick={() => history.push(`course/${course_id}`)}
-        className="cta"
-        style={{
-          marginTop: "2rem",
-        }}
-      >
-        Explore
-      </button>
+      <div className="course-footer">
+        <span
+          onClick={async () => {
+            try {
+              let delResponse = await axios(
+                `http://localhost:5000/courses/${course_id}`,
+                { method: "DELETE" }
+              );
+              if (delResponse.status === 200) {
+                toast.success("Deleted successfully");
+              } else {
+                toast.error("failed to delete ");
+              }
+            } catch (error) {
+              alert(error);
+            }
+          }}
+          className="material-icons module-icon"
+        >
+          delete
+        </span>
+
+        <button
+          onClick={() => history.push(`course/${course_id}`)}
+          className="cta"
+        >
+          Explore
+        </button>
+      </div>
     </div>
   );
 };
