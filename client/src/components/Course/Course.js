@@ -11,7 +11,7 @@ const Course = ({ course_id, course_name, modules }) => {
       <div className="course-content">
         <div className="course-img">
           <span className="icon">
-            <i class="material-icons md-48">school</i>
+            <i className="material-icons md-48">school</i>
           </span>
         </div>
 

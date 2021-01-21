@@ -1,17 +1,22 @@
 import * as React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import { AddButton } from "..";
 import "./ModuleList.css";
+import { Redirect } from "react-router-dom";
 
 let url = "http://localhost:5000/modules/list";
 
 const ModuleList = ({ history, match }) => {
+  // urls for making async requests
   const courseUrl = `http://localhost:5000/courses/${match.params.id}`;
+  const moduleUrl = `http://localhost:5000/modules/${match.params.id}`;
 
   // component state
   const [modules, setModules] = React.useState([]);
   const [course, setCourse] = React.useState([]);
+  const [redirect, setRedirect] = React.useState(false);
 
   // fetch modules from the database
   React.useEffect(() => {
@@ -32,7 +37,7 @@ const ModuleList = ({ history, match }) => {
         let course = await axios.get(courseUrl);
         setCourse(course.data[0]);
       } catch (error) {
-        console.log(error);
+        alert(error);
       }
     }
 
@@ -40,14 +45,20 @@ const ModuleList = ({ history, match }) => {
     fetchModules();
   }, []);
 
-  async function handleUpdates() {
-    let result = await axios.put();
+  async function handleDelete() {
+    try {
+      let delResponse = await axios(moduleUrl, { method: "DELETE" });
+      console.log(delResponse);
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
     <div className="module-list container">
+      {redirect && <Redirect to="modules/edit" />}
       <h1 className="section-header">
-        List of modules in {course.course_name}{" "}
+        List of modules in {course.course_name}
       </h1>
       <table className="module-table">
         <thead>
@@ -65,10 +76,22 @@ const ModuleList = ({ history, match }) => {
               <td>{module.module_name}</td>
               <td>{course.course_name}</td>
               <td>
-                <span class="material-icons module-icon">create</span>
+                <Link to={"/modules/" + module.module_id}>
+                  <span
+                    onClick={() => setRedirect(true)}
+                    className="material-icons module-icon"
+                  >
+                    create
+                  </span>
+                </Link>
               </td>
               <td>
-                <span class="material-icons module-icon">delete</span>
+                <span
+                  onClick={handleDelete}
+                  className="material-icons module-icon"
+                >
+                  delete
+                </span>
               </td>
             </tr>
           ))}

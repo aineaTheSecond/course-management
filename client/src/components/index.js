@@ -7,6 +7,7 @@ import CourseForm from "./CourseForm/CourseForm";
 import ModuleList from "./ModuleList/ModuleList";
 import AddButton from "./AddButton/AddButton";
 import ModuleForm from "./ModuleForm/ModuleForm";
+import EditForm from "./EditForm/EditForm";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   ModuleList,
   AddButton,
   ModuleForm,
+  EditForm,
 };
