@@ -1,6 +1,5 @@
 // this file consists of endpoints that are consumed by the API
 const express = require("express");
-const { returning } = require("../db.config");
 const router = express.Router();
 
 // the database config
@@ -32,6 +31,7 @@ router.get("/courses/:id", async (req, res) => {
 router.post("/courses/new", async (req, res) => {
   // desctructure the course details from the request body
   const { course_id, course_name, modules } = req.body;
+  console.log(req.body);
   try {
     // insert the data into the database
     let result = await db("courses").returning("*").insert({

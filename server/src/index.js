@@ -6,7 +6,7 @@ require("dotenv").config();
 
 // constants
 const app = express();
-const port = process.env.API_PORT;
+const port = process.env.API_PORT || 5000;
 const appOrigin = process.env.APP_ORIGIN;
 
 // middlewares
