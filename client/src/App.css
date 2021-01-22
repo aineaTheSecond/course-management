@@ -65,3 +65,10 @@ button:hover {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
 }
+
+.input-form > button {
+  padding: 0.5rem 1rem;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
